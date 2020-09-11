@@ -7,7 +7,7 @@ function Calculator(props)
             <h1>{props.heading}</h1>
             <form>
                 <label htmlFor='input1'>Input 1 </label><br/>
-                <input type='text' id='input1'/><br />
+                <input type='number' id='input1'/><br />
                                 
                 <label htmlFor="operation">Choose an operation to perform: <br />
                     <select  id="operation">
@@ -18,8 +18,8 @@ function Calculator(props)
                     </select>
                 </label><br />
             
-                <label htmlFor='input'>Input 2 </label><br />
-                <input type='text' id='input2'/> 
+                <label htmlFor='input2'>Input 2 </label><br />
+                <input type='number' id='input2'/> 
                    
                 <br /><br />
                 <input type= 'submit' id='calculate'value='Calculate'/>
