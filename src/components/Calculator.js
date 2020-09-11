@@ -4,13 +4,15 @@ import React, {useState} from 'react';
 function Calculator(props)
 {
     //Set up for state of input1
-    const [newInput1, setNewInput1] = useState( '' );
+    const [newInputs, setNewInputs] = useState( {newInput1: '',newInput2:'', newOperation:' '});
 
     //Defining Function for "onSubmit" form event
     const doCalculation = ( e ) => {
         e.preventDefault();
 
-        setNewInput1( document.getElementById('input1').value );
+        const newInputsObject = { newInput1: document.getElementById('input1').value, newInput2: document.getElementById('input2').value, newOperation: document.getElementById('operation').value}; 
+        // setNewInputs( document.getElementById('input1').value, document.getElementById('input2').value, document.getElementById('operation').value  );
+        setNewInputs( newInputsObject );
     }
 
     return(
@@ -35,7 +37,7 @@ function Calculator(props)
 
                 <input type= 'submit' id='calculate'value='Calculate'/>
                 <p>
-                    <strong> Result:{newInput1}</strong>
+                    <strong> Result: {newInputs.newInput1 +" "+ newInputs.newOperation + " " + newInputs.newInput2 }</strong>
                 </p>
             </form>
         </>
