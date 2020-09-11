@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Calculator()
+function Calculator(props)
 {
     return(
         <>
-            <h1>Welcome  to my Calculator App</h1>
+            <h1>{props.heading}</h1>
             <form>
                 <label htmlFor='input1'>Input 1 </label><br/>
                 <input type='text' id='input1'/><br />
