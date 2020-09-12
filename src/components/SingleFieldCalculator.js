@@ -9,55 +9,56 @@ function getIndividualInputs( inputString )
     let firstNumberIsNegative= false;
     let secondNumberIsNegative =false;
     let finalInput= '';
-     //Remove whitespaces from the expression
-     inputString = inputString.split(' ').join('');
-    if(inputString.match(/^-?\d+(\.\d+)?(\+|-|\*|\/)-?\d+(\.\d+)?$/))
-    {
-        if(inputString.match(/^-\d+/))
-        {
-            firstNumberIsNegative=true;           
-            
-        }
-        if(inputString.match(/(\+|-|\*|\/)-\d+(\.\d+)?$/))
-        {
-            secondNumberIsNegative= true;
-        }
-
-        if(firstNumberIsNegative && secondNumberIsNegative)
-        {
-            const inputString1 = inputString.replace('-', '');
-            const indexLast = inputString1.lastIndexOf('-');
-            const inputString2 = inputString1.replace(inputString1[indexLast], '');
-            finalInput = inputString2;
-        }
-
-        else if(firstNumberIsNegative)
-        {
-            finalInput = inputString.replace('-', '');
-            console.log("first number is negative");
-        }
-        else if(secondNumberIsNegative)
-        {
-            const indexLast = inputString.lastIndexOf('-');
-            console.log(indexLast);
-            finalInput = inputString.replace(inputString[indexLast], '');
-            console.log(  finalInput);
-        }
-   
+    //Remove whitespaces from the input expression
+    inputString = inputString.split(' ').join('');
     
-        //Declare all the separators for split()
-        const tokens = ['+', '-', '*', '/'];    
-        
-        for(let i = 0; i < tokens.length; i++){
-            finalInput = finalInput.split(tokens[i]).join(','+ tokens[i]+ ',');
-        }
+    firstNumberIsNegative = inputString.match(/^-\d+/);
+    secondNumberIsNegative= inputString.match(/(\+|-|\*|\/)-\d+(\.\d+)?$/);
+    
 
-        finalInput = finalInput.split(',');     
-        return finalInput;  
+    if(firstNumberIsNegative && secondNumberIsNegative)
+    {
+        const inputString1 = inputString.replace('-', '');
+        const indexLast = inputString1.lastIndexOf('-');
+        const inputString2 = inputString1.replace(inputString1[indexLast], '');
+        finalInput = inputString2;
     }
-    else{
-        alert("invalid input");
+
+    else if(firstNumberIsNegative)
+    {
+        finalInput = inputString.replace('-', '');
+        console.log("first number is negative");
     }
+    else if(secondNumberIsNegative)
+    {
+        const indexLast = inputString.lastIndexOf('-');
+        console.log(indexLast);
+        finalInput = inputString.replace(inputString[indexLast], '');
+        console.log(  finalInput);
+    }
+
+
+    //Declare all the separators for split()
+    const tokens = ['+', '-', '*', '/'];    
+    
+    for(let i = 0; i < tokens.length; i++){
+        finalInput = finalInput.split(tokens[i]).join(','+ tokens[i]+ ',');
+    }
+
+    finalInput = finalInput.split(',');
+    if(firstNumberIsNegative)
+    {
+        finalInput[0] = -(finalInput[0]);
+        console.log(finalInput);
+    }    
+    if(secondNumberIsNegative)
+    {
+        finalInput[2] = -(finalInput[2]);
+        console.log(finalInput);
+    }    
+
+    return finalInput;  
+   
      
 }
     
@@ -98,7 +99,11 @@ function mathCalculation( expression )
     }    
     return num3;
 }
-
+//Function to validate input
+//More advanced feature to include in future:https://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
+//For now just refrenced some website to learn about regex, but did my own coding
+//https://codeburst.io/javascript-learn-regular-expressions-for-beginners-bb6107015d91
+//https://stackoverflow.com/questions/41980425/regex-to-allow-only-numbers-and-decimals-not-working-in-javascript
 function validateInput( s )
 {
     s = s.split(' ').join('');
@@ -109,6 +114,8 @@ function validateInput( s )
 
       
 }
+//End citation
+
 
 function SingleFieldCalculator(props)
 {
