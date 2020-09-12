@@ -5,22 +5,52 @@ import React, {useState} from 'react';
 // Although I knew split() method will help to split the string but I was not sure how to make a function for multiple separatore. This function can be used for any number and any new separators. Just need to change tokens array for different set of separators. Also manipulated it so separators become part of output array
 function getIndividualInputs( inputString )
 {
-    const tokens = ['+', '-', '*', '/'];
-    // const tempChar = tokens[0]; // We can use the first token as a temporary join character
-    for(var i = 1; i < tokens.length; i++){
+    inputString = inputString.split(' ').join('');
+    const tokens = ['+', '-', '*', '/'];    
+    for(var i = 0; i < tokens.length; i++){
         inputString = inputString.split(tokens[i]).join(','+ tokens[i]+ ',');
     }
     inputString = inputString.split(',');
-    console.log( inputString );
-    return inputString;
     
+    
+    console.log( inputString );
+    return inputString;   
 
 }
+
+
 // End Citation
     function mathCalculation( expression )
     {
-        getIndividualInputs(expression);
-        return 8;
+        const [num1,op,num2] = getIndividualInputs(expression);        
+        console.log(num1 + " "+ op + " " + num2);
+
+        let num3 =0.0;
+        console.log("op is"+ op+ " "+ num1 + " "+ num2);
+        switch ( op )
+        {
+            case '+':
+                num3 = num1 + num2;           
+            break;
+
+            case '-':         
+                num3 = num1 - num2;        
+            break;
+
+            case '*':         
+                num3 = num1 * num2;       
+            break;
+
+            case '/':
+                num3 = num1 / num2;
+            break;
+
+            default:         
+                num3 = 0;     
+            break;
+        }
+        console.log("num3 is "+ num3);
+        return num3;
     }
 
 function SingleFieldCalculator(props)
