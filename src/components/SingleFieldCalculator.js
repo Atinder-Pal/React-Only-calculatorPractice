@@ -16,10 +16,10 @@ function getIndividualInputs( inputString )
         if(inputString.match(/^-\d+/))
         {
             firstNumberIsNegative=true;
-            console.log("first number is negative");
+            
             
         }
-        if(inputString.match(/(\+|-|\*|\/)-\d+$/))
+        if(inputString.match(/(\+|-|\*|\/)-\d+(\.\d+)?$/))
         {
             secondNumberIsNegative= true;
         }
@@ -35,6 +35,7 @@ function getIndividualInputs( inputString )
         else if(firstNumberIsNegative)
         {
             finalInput = inputString.replace('-', '');
+            console.log("first number is negative");
         }
         else if(secondNumberIsNegative)
         {
@@ -45,15 +46,15 @@ function getIndividualInputs( inputString )
         }
    
     
-    //Declare all the separators for split()
-    const tokens = ['+', '-', '*', '/'];    
-    
-    for(let i = 0; i < tokens.length; i++){
-        finalInput = finalInput.split(tokens[i]).join(','+ tokens[i]+ ',');
-    }
+        //Declare all the separators for split()
+        const tokens = ['+', '-', '*', '/'];    
+        
+        for(let i = 0; i < tokens.length; i++){
+            finalInput = finalInput.split(tokens[i]).join(','+ tokens[i]+ ',');
+        }
 
-    finalInput = finalInput.split(',');     
-    return finalInput;  
+        finalInput = finalInput.split(',');     
+        return finalInput;  
     }
     else{
         alert("invalid input");
