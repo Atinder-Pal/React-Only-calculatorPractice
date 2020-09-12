@@ -25,7 +25,7 @@ function mathCalculation( expression )
     const num1 = parseFloat(operand1);
     const num2 = parseFloat(operand2);
     console.log(num1 + " "+ op + " " + num2);
-    
+
     let num3 =0.0;
     console.log("op is"+ op+ " "+ num1 + " "+ num2);
     switch ( op )
@@ -65,6 +65,9 @@ function SingleFieldCalculator(props)
         setNewExpression(newExpression);
 
         setNewResult(mathCalculation( newExpression ));
+
+        //Clear the input field
+        setNewExpression( '' );
     }
 
     return ( 
