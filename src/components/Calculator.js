@@ -6,7 +6,7 @@ function mathCalculation( num1,num2, op )
     let num3 =0.0;
     console.log("op is"+ op+ " "+ num1 + " "+ num2);
     switch ( op )
-    {
+{
         case 'addition':
             num3 = num1 + num2;           
         break;

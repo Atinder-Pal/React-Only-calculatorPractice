@@ -37,7 +37,7 @@ function getIndividualInputs( inputString )
         console.log(  finalInput);
     }
 
-    if(!firstNumberIsNegative || secondNumberIsNegative)
+    if(!(firstNumberIsNegative || secondNumberIsNegative))
     {
         finalInput = inputString;
     }
