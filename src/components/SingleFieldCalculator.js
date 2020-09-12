@@ -15,8 +15,7 @@ function getIndividualInputs( inputString )
     {
         if(inputString.match(/^-\d+/))
         {
-            firstNumberIsNegative=true;
-            
+            firstNumberIsNegative=true;           
             
         }
         if(inputString.match(/(\+|-|\*|\/)-\d+(\.\d+)?$/))
@@ -100,6 +99,17 @@ function mathCalculation( expression )
     return num3;
 }
 
+function validateInput( s )
+{
+    s = s.split(' ').join('');
+    if(s.match(/^-?\d+(\.\d+)?(\+|-|\*|\/)-?\d+(\.\d+)?$/))
+    return true;
+    else
+    return false;
+
+      
+}
+
 function SingleFieldCalculator(props)
 {
     //update state of input expression using useState()
@@ -113,11 +123,17 @@ function SingleFieldCalculator(props)
         e.preventDefault();
         //Passing new value to setNewExpression to update the state of input expression
         setNewExpression(newExpression);
-
-        setNewResult(mathCalculation( newExpression ));
-
-        //Clear the input field 
-        setNewExpression( '' );
+        if(validateInput( newExpression ))
+        {
+            setNewResult(mathCalculation( newExpression ));
+            //Clear the input field 
+            setNewExpression( '' );
+        }
+        else{
+            alert("invalid operation");
+        }
+        
+        
     }
 
     return ( 
