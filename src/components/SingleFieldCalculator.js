@@ -7,51 +7,52 @@ function getIndividualInputs( inputString )
 {
     inputString = inputString.split(' ').join('');
     const tokens = ['+', '-', '*', '/'];    
-    for(var i = 0; i < tokens.length; i++){
+    for(let i = 0; i < tokens.length; i++){
         inputString = inputString.split(tokens[i]).join(','+ tokens[i]+ ',');
     }
-    inputString = inputString.split(',');
-    
+    inputString = inputString.split(','); 
     
     console.log( inputString );
     return inputString;   
 
 }
-
-
 // End Citation
-    function mathCalculation( expression )
+
+function mathCalculation( expression )
+{
+    const [operand1,op,operand2] = getIndividualInputs(expression);        
+    
+    const num1 = parseFloat(operand1);
+    const num2 = parseFloat(operand2);
+    console.log(num1 + " "+ op + " " + num2);
+    
+    let num3 =0.0;
+    console.log("op is"+ op+ " "+ num1 + " "+ num2);
+    switch ( op )
     {
-        const [num1,op,num2] = getIndividualInputs(expression);        
-        console.log(num1 + " "+ op + " " + num2);
+        case '+':
+            num3 = num1 + num2;           
+        break;
 
-        let num3 =0.0;
-        console.log("op is"+ op+ " "+ num1 + " "+ num2);
-        switch ( op )
-        {
-            case '+':
-                num3 = num1 + num2;           
-            break;
+        case '-':         
+            num3 = num1 - num2;        
+        break;
 
-            case '-':         
-                num3 = num1 - num2;        
-            break;
+        case '*':         
+            num3 = num1 * num2;       
+        break;
 
-            case '*':         
-                num3 = num1 * num2;       
-            break;
+        case '/':
+            num3 = num1 / num2;
+        break;
 
-            case '/':
-                num3 = num1 / num2;
-            break;
-
-            default:         
-                num3 = 0;     
-            break;
-        }
-        console.log("num3 is "+ num3);
-        return num3;
+        default:         
+            num3 = 0;     
+        break;
     }
+    console.log("num3 is "+ num3);
+    return num3;
+}
 
 function SingleFieldCalculator(props)
 {
