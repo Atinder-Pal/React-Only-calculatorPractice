@@ -45,6 +45,8 @@ function Calculator(props)
     const updateOperation = e =>{
         setNewInputs({newInput1: newInputs.newInput1,newInput2: newInputs.newInput2, newOperation: e.target.value});
     }
+    const [result, setNewResult] = useState( 0 );
+    
 
     //Defining Function for "onSubmit" form event
     const doCalculation = ( e ) => {
@@ -53,10 +55,9 @@ function Calculator(props)
         setNewInputs( newInputs );
         console.log(newInputs);
 
-        const result = mathCalculation(newInputs.newInput1, newInputs.newInput2, newInputs.newOperation);
-        console.log(result);
+        setNewResult(mathCalculation(newInputs.newInput1, newInputs.newInput2, newInputs.newOperation));
+        console.log(result);//This console.log returns previous state of result even though it is below the setNewResult() in the flow
         
-
         //Clear the input fields
         setNewInputs(  {newInput1: 0,newInput2: 0, newOperation: newInputs.newOperation} );        
     }
@@ -85,7 +86,7 @@ function Calculator(props)
 
                 <input type= 'submit' id='calculate'value='Calculate'/>
                 <p>
-                    <strong> Result: {newInputs.newInput1 +" "+ newInputs.newOperation + " " + newInputs.newInput2 }</strong>
+                    <strong> Result: {result} </strong>
                 </p>
                 
             </form>
