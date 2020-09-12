@@ -15,7 +15,7 @@ function getIndividualInputs( inputString )
     firstNumberIsNegative = inputString.match(/^-\d+/);
     secondNumberIsNegative= inputString.match(/(\+|-|\*|\/)-\d+(\.\d+)?$/);
     
-
+    
     if(firstNumberIsNegative && secondNumberIsNegative)
     {
         const inputString1 = inputString.replace('-', '');
@@ -35,6 +35,11 @@ function getIndividualInputs( inputString )
         console.log(indexLast);
         finalInput = inputString.replace(inputString[indexLast], '');
         console.log(  finalInput);
+    }
+
+    if(!firstNumberIsNegative || secondNumberIsNegative)
+    {
+        finalInput = inputString;
     }
 
 
@@ -130,6 +135,7 @@ function SingleFieldCalculator(props)
         e.preventDefault();
         //Passing new value to setNewExpression to update the state of input expression
         setNewExpression(newExpression);
+
         if(validateInput( newExpression ))
         {
             setNewResult(mathCalculation( newExpression ));
