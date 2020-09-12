@@ -2,42 +2,29 @@ import React, {useState} from 'react';
 
 function mathCalculation( num1,num2, op )
 {
-    // const num1 = inputParameters.newInput1;
-    // const num2 = inputParameters.newInput2;
-    // const op =  inputParameters.newOperation;
-    let num3 =0;
-    console.log("op is"+ op);
+    
+    let num3 =0.0;
+    console.log("op is"+ op+ " "+ num1 + " "+ num2);
     switch ( op )
     {
         case 'addition':
-            {
-                num3 = num1 + num2;
-                console.log(num1 + num2);
-            }
+            num3 = num1 + num2;           
         break;
 
-        case 'subtraction':
-            {
-                num3 = num1 - num2;
-            }
+        case 'subtraction':         
+            num3 = num1 - num2;        
         break;
 
-        case 'multiplication':
-            {
-                num3 = num1 * num2;
-            } 
+        case 'multiplication':         
+            num3 = num1 * num2;       
         break;
 
         case 'division':
-            {
-                num3 = num1 / num2;
-            }
+            num3 = num1 / num2;
         break;
 
-        default:
-            {
-                num3 = 0;
-            }
+        default:         
+            num3 = 0;     
         break;
     }
     console.log("num3 is "+ num3);
@@ -47,13 +34,13 @@ function mathCalculation( num1,num2, op )
 
 function Calculator(props)
 {
-    //Set up for state of input1
-    const [newInputs, setNewInputs] = useState( {newInput1: 0,newInput2:0, newOperation:' '});
+    //Set up for state of inputs
+    const [newInputs, setNewInputs] = useState( {newInput1: 0,newInput2:0, newOperation:'addition'});
     const updateInput1 = e =>{
-        setNewInputs({newInput1: e.target.value,newInput2: newInputs.newInput2, newOperation: newInputs.newOperation});
+        setNewInputs({newInput1: parseFloat(e.target.value),newInput2: newInputs.newInput2, newOperation: newInputs.newOperation});
     }
     const updateInput2 = e =>{
-        setNewInputs({newInput1: newInputs.newInput1,newInput2: e.target.value, newOperation: newInputs.newOperation});
+        setNewInputs({newInput1: newInputs.newInput1,newInput2: parseFloat(e.target.value), newOperation: newInputs.newOperation});
     }
     const updateOperation = e =>{
         setNewInputs({newInput1: newInputs.newInput1,newInput2: newInputs.newInput2, newOperation: e.target.value});
@@ -61,18 +48,17 @@ function Calculator(props)
 
     //Defining Function for "onSubmit" form event
     const doCalculation = ( e ) => {
-        e.preventDefault();
-        
-        //const newInputsObject = { newInput1: parseInt(document.getElementById('input1').value) , newInput2: parseInt(document.getElementById('input2').value), newOperation: document.getElementById('operation').value}; 
-        
+        e.preventDefault();     
+       
         setNewInputs( newInputs );
         console.log(newInputs);
+
         const result = mathCalculation(newInputs.newInput1, newInputs.newInput2, newInputs.newOperation);
         console.log(result);
         
 
         //Clear the input fields
-        // setNewInputs(  {newInput1: '',newInput2:'', newOperation:' '} );        
+        setNewInputs(  {newInput1: 0,newInput2: 0, newOperation: newInputs.newOperation} );        
     }
     
     
@@ -99,7 +85,7 @@ function Calculator(props)
 
                 <input type= 'submit' id='calculate'value='Calculate'/>
                 <p>
-                    <strong> Result: {newInputs.newInput1 +" "+ newInputs.newOperation + " " + newInputs.newInput2 + " " }</strong>
+                    <strong> Result: {newInputs.newInput1 +" "+ newInputs.newOperation + " " + newInputs.newInput2 }</strong>
                 </p>
                 
             </form>
