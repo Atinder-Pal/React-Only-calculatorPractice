@@ -6,8 +6,9 @@ import React, {useState} from 'react';
 // Although I knew split() method will help to split the string but I was not sure how to make a function for multiple separatore. This function can be used for any number and any new separators. Just need to change tokens array for different set of separators. Also manipulated it so separators become part of output array
 function getIndividualInputs( inputString )
 {
-    
-    //Remove whitespaces from the expression
+    if(inputString.match(/^\d+(\.\d+)?(\+|-|\*|\/)\d+$/))
+    {
+        //Remove whitespaces from the expression
     inputString = inputString.split(' ').join('');
     
     //Declare all the separators for split()
@@ -18,7 +19,12 @@ function getIndividualInputs( inputString )
     }
 
     inputString = inputString.split(',');     
-    return inputString;   
+    return inputString;  
+    }
+    else{
+        alert("invalid input");
+    }
+     
 }
     
     
