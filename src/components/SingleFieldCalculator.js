@@ -6,20 +6,54 @@ import React, {useState} from 'react';
 // Although I knew split() method will help to split the string but I was not sure how to make a function for multiple separatore. This function can be used for any number and any new separators. Just need to change tokens array for different set of separators. Also manipulated it so separators become part of output array
 function getIndividualInputs( inputString )
 {
-    if(inputString.match(/^\d+(\.\d+)?(\+|-|\*|\/)\d+$/))
+    let firstNumberIsNegative= false;
+    let secondNumberIsNegative =false;
+    let finalInput= '';
+     //Remove whitespaces from the expression
+     inputString = inputString.split(' ').join('');
+    if(inputString.match(/^-?\d+(\.\d+)?(\+|-|\*|\/)-?\d+(\.\d+)?$/))
     {
-        //Remove whitespaces from the expression
-    inputString = inputString.split(' ').join('');
+        if(inputString.match(/^-\d+/))
+        {
+            firstNumberIsNegative=true;
+            console.log("first number is negative");
+            
+        }
+        if(inputString.match(/(\+|-|\*|\/)-\d+$/))
+        {
+            secondNumberIsNegative= true;
+        }
+
+        if(firstNumberIsNegative && secondNumberIsNegative)
+        {
+            const inputString1 = inputString.replace('-', '');
+            const indexLast = inputString1.lastIndexOf('-');
+            const inputString2 = inputString1.replace(inputString1[indexLast], '');
+            finalInput = inputString2;
+        }
+
+        else if(firstNumberIsNegative)
+        {
+            finalInput = inputString.replace('-', '');
+        }
+        else if(secondNumberIsNegative)
+        {
+            const indexLast = inputString.lastIndexOf('-');
+            console.log(indexLast);
+            finalInput = inputString.replace(inputString[indexLast], '');
+            console.log(  finalInput);
+        }
+   
     
     //Declare all the separators for split()
     const tokens = ['+', '-', '*', '/'];    
     
     for(let i = 0; i < tokens.length; i++){
-        inputString = inputString.split(tokens[i]).join(','+ tokens[i]+ ',');
+        finalInput = finalInput.split(tokens[i]).join(','+ tokens[i]+ ',');
     }
 
-    inputString = inputString.split(',');     
-    return inputString;  
+    finalInput = finalInput.split(',');     
+    return finalInput;  
     }
     else{
         alert("invalid input");
