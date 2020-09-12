@@ -1,33 +1,39 @@
 import React, {useState} from 'react';
 
+//Function to split single expression into array of individual operands & operator
 // Citation
 // https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
 // Although I knew split() method will help to split the string but I was not sure how to make a function for multiple separatore. This function can be used for any number and any new separators. Just need to change tokens array for different set of separators. Also manipulated it so separators become part of output array
 function getIndividualInputs( inputString )
 {
+    
+    //Remove whitespaces from the expression
     inputString = inputString.split(' ').join('');
+    
+    //Declare all the separators for split()
     const tokens = ['+', '-', '*', '/'];    
+    
     for(let i = 0; i < tokens.length; i++){
         inputString = inputString.split(tokens[i]).join(','+ tokens[i]+ ',');
     }
-    inputString = inputString.split(','); 
-    
-    console.log( inputString );
-    return inputString;   
 
+    inputString = inputString.split(',');     
+    return inputString;   
 }
+    
+    
+
+
 // End Citation
 
 function mathCalculation( expression )
-{
+{   //Assigning values to 3 variables from Array in one shot
     const [operand1,op,operand2] = getIndividualInputs(expression);        
     
     const num1 = parseFloat(operand1);
-    const num2 = parseFloat(operand2);
-    console.log(num1 + " "+ op + " " + num2);
-
+    const num2 = parseFloat(operand2);    
     let num3 =0.0;
-    console.log("op is"+ op+ " "+ num1 + " "+ num2);
+    
     switch ( op )
     {
         case '+':
@@ -49,24 +55,27 @@ function mathCalculation( expression )
         default:         
             num3 = 0;     
         break;
-    }
-    console.log("num3 is "+ num3);
+    }    
     return num3;
 }
 
 function SingleFieldCalculator(props)
 {
+    //update state of input expression using useState()
     const [newExpression, setNewExpression] = useState( '' );
+
+    //update state of result variable using useState()
     const [newResult, setNewResult] = useState( '' );
+
     //Defining Function for "onSubmit" form event
     const doCalculation = ( e ) => {
         e.preventDefault();
-
+        //Passing new value to setNewExpression to update the state of input expression
         setNewExpression(newExpression);
 
         setNewResult(mathCalculation( newExpression ));
 
-        //Clear the input field
+        //Clear the input field 
         setNewExpression( '' );
     }
 
@@ -80,8 +89,7 @@ function SingleFieldCalculator(props)
                 <input type= 'submit' id='calculate'value='Calculate'/>
                 <p>
                     <strong> Result: {newResult}</strong>
-                </p>
-                
+                </p>                
             </form>
         </>        
      );
