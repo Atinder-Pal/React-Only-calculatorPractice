@@ -35,7 +35,7 @@ function mathCalculation( num1,num2, op )
 function Calculator(props)
 {
     //Set up for state of inputs
-    const [newInputs, setNewInputs] = useState( {newInput1: 0,newInput2:0, newOperation:'addition'});
+    const [newInputs, setNewInputs] = useState( {newInput1: '',newInput2:'', newOperation:'addition'});
     const updateInput1 = e =>{
         setNewInputs({newInput1: parseFloat(e.target.value),newInput2: newInputs.newInput2, newOperation: newInputs.newOperation});
     }
@@ -59,7 +59,7 @@ function Calculator(props)
         console.log(result);//This console.log returns previous state of result even though it is below the setNewResult() in the flow
         
         //Clear the input fields
-        setNewInputs(  {newInput1: 0,newInput2: 0, newOperation: newInputs.newOperation} );        
+        setNewInputs(  {newInput1: '',newInput2: '', newOperation: newInputs.newOperation} );        
     }
     
     
