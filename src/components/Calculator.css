@@ -1,0 +1,73 @@
+form{
+    background-color: #9592A6FF;
+  
+}
+
+h1{
+    margin:15vh 0 3vh 0;
+    text-align: center;
+    font-size:1.8rem;
+    background-color: #A62F14;
+    padding:0.5rem ;
+    color:#021526;
+    font-weight: bolder;
+    width:100%;
+    
+   
+}
+form label:first-of-type, form label:last-of-type{
+    display:none;
+}
+div{
+    margin:5vh auto 1.5vh auto;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    
+}
+form input:first-of-type, form input:last-of-type{
+      
+    width:30%;
+    height:4vh;
+    font-size:1rem;
+    color:#021526;
+    font-weight: bold;
+}
+
+form label:nth-of-type(2) select{
+    height:5vh;
+    
+    font-size:1rem;
+    font-weight: bold;
+    color:#021526;
+    
+    text-align: center;
+    
+}
+
+#calculate, form p{
+    display:block;
+    margin: 0 auto;
+    text-align: center;
+    font-size:1rem;
+    font-weight: bold;
+    color:#021526;
+    
+}
+#calculate{
+    background-color: #fff;
+}
+form p{
+    margin-top:3vh;
+    border-bottom: 0.2rem solid #A62F14;
+    font-size:1.5rem;
+    font-weight:300;
+    margin: 3vh 10vw;
+
+}
+
+#operation option:hover{
+    background-color: #A62F14;
+}

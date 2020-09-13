@@ -1,5 +1,22 @@
 import React, {useState} from 'react';
 
+
+//Function to validate input
+//More advanced feature to include in future:https://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
+//For now just refrenced some website to learn about regex, but did my own coding
+//https://codeburst.io/javascript-learn-regular-expressions-for-beginners-bb6107015d91
+//https://stackoverflow.com/questions/41980425/regex-to-allow-only-numbers-and-decimals-not-working-in-javascript
+function validateInput( s )
+{
+    s = s.split(' ').join('');
+    if(s.match(/^-?\d+(\.\d+)?(\+|-|\*|\/)-?\d+(\.\d+)?$/))
+    return true;
+    else
+    return false;      
+}
+//End citation
+
+
 //Function to split single expression into array of individual operands & operator
 // Citation
 // https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
@@ -37,7 +54,7 @@ function getIndividualInputs( inputString )
         console.log(  finalInput);
     }
 
-    if(!(firstNumberIsNegative || secondNumberIsNegative))
+    else
     {
         finalInput = inputString;
     }
@@ -62,14 +79,9 @@ function getIndividualInputs( inputString )
         console.log(finalInput);
     }    
 
-    return finalInput;  
-   
+    return finalInput;    
      
-}
-    
-    
-
-
+}   
 // End Citation
 
 function mathCalculation( expression )
@@ -104,23 +116,6 @@ function mathCalculation( expression )
     }    
     return num3;
 }
-//Function to validate input
-//More advanced feature to include in future:https://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
-//For now just refrenced some website to learn about regex, but did my own coding
-//https://codeburst.io/javascript-learn-regular-expressions-for-beginners-bb6107015d91
-//https://stackoverflow.com/questions/41980425/regex-to-allow-only-numbers-and-decimals-not-working-in-javascript
-function validateInput( s )
-{
-    s = s.split(' ').join('');
-    if(s.match(/^-?\d+(\.\d+)?(\+|-|\*|\/)-?\d+(\.\d+)?$/))
-    return true;
-    else
-    return false;
-
-      
-}
-//End citation
-
 
 function SingleFieldCalculator(props)
 {
@@ -144,9 +139,7 @@ function SingleFieldCalculator(props)
         }
         else{
             alert("invalid operation");
-        }
-        
-        
+        }            
     }
 
     return ( 

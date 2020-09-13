@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+// import './reset.css';
+import './Calculator.css'
 
 function mathCalculation( num1,num2, op )
 {
     
-    let num3 =0.0;
-    console.log("op is"+ op+ " "+ num1 + " "+ num2);
+    let num3 =0.0;    
     switch ( op )
 {
         case 'addition':
@@ -52,12 +53,9 @@ function Calculator(props)
     const doCalculation = ( e ) => {
         e.preventDefault();     
        
-        setNewInputs( newInputs );
-        console.log(newInputs);
-
+        setNewInputs( newInputs );     
         setNewResult(mathCalculation(newInputs.newInput1, newInputs.newInput2, newInputs.newOperation));
-        console.log(result);//This console.log returns previous state of result even though it is below the setNewResult() in the flow
-        
+                
         //Clear the input fields
         setNewInputs(  {newInput1: '',newInput2: '', newOperation: newInputs.newOperation} );        
     }
@@ -68,25 +66,28 @@ function Calculator(props)
         <>
             <h1>{props.heading}</h1>
             <form onSubmit={doCalculation}>
-                <label htmlFor='input1'>Input 1 </label><br/>
-                <input type='number' id='input1' value={newInputs.newInput1} onChange= {updateInput1} /><br />
+                <div>
+                <label htmlFor='input1'>Input 1 </label>
+                <input type='number' id='input1' value={newInputs.newInput1} placeholder= 'Operand 1' onChange= {updateInput1} />
                                 
-                <label htmlFor="operation">Choose an operation to perform: <br />
+                <label htmlFor="operation">
                     <select  id="operation" onChange= {updateOperation}>
                         <option value="addition"> &nbsp;&nbsp; + </option>
                         <option value="subtraction">&nbsp;&nbsp;&nbsp; - </option>
                         <option value="multiplication">&nbsp;&nbsp;&nbsp; * </option>
                         <option value="division">&nbsp;&nbsp;&nbsp; / </option>
                     </select>
-                </label><br />
+                </label>
             
                 <label htmlFor='input2'>Input 2 </label><br />
-                <input type='number' id='input2' value={newInputs.newInput2} onChange= {updateInput2}/>                    
+                <input type='number' id='input2' value={newInputs.newInput2} placeholder= 'Operand 2' onChange= {updateInput2}/> 
+                </div>
+                                   
                 <br /><br />
 
-                <input type= 'submit' id='calculate'value='Calculate'/>
+                <input type= 'submit' id='calculate'value='='/>
                 <p>
-                    <strong> Result: {result} </strong>
+                    <strong> {result} </strong>
                 </p>
                 
             </form>
