@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import './reset.css';
+import './SingleFieldCalculator.css';
 
 
 //Function to validate input
@@ -138,7 +140,7 @@ function SingleFieldCalculator(props)
             setNewExpression( '' );
         }
         else{
-            alert("invalid operation");
+            alert("invalid operation: Format expected: operand1 operator operand2");
         }            
     }
 
